@@ -234,12 +234,68 @@
         box-shadow: 0 0 0px rgba(255, 215, 0, 0.1);
       }
     }
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.5s ease;
+      z-index: 9999;
+    }
+    /* Hộp nội dung */
+    .popup-content {
+      background: white;
+      padding: 25px 20px;
+      text-align: center;
+      border-radius: 10px;
+      max-width: 320px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      animation: scaleUp 0.4s ease;
+    }
+    .popup-content p {
+      font-size: 16px;
+      margin: 0;
+    }
+    .popup button {
+      margin-top: 18px;
+      padding: 10px 25px;
+      background: #ff4081;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .popup button:hover {
+      background: #e73370;
+    }
+    /* Hiệu ứng */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes scaleUp {
+      from {transform: scale(0.8);}
+      to {transform: scale(1);}
+    }
+    
     
     
     
   </style>
 </head>
 <body>
+  <div class="popup" id="popup"
+    <div class="popup-content">
+      <p>Cho phép tất cả quyền khi vào web nhoá</p>
+      <button onclick="accept()">Ok Luôn</button>
+    </div>
+  </div>
   <div class="container">
     <img class="avatar" src="https://i.ibb.co/fb7nHL4/D0-B99-E73-5350-45-EC-91-A4-68066-A0-D99-F2.png" alt="avatar">
     <h1>Ontop Community</h1>
@@ -395,8 +451,16 @@
             if (event.target === contactModal) contactModal.style.display = "none";
             if (event.target === esignModal) esignModal.style.display = "none";
           };
+          // JavaScript popup
+    function accept() {
+      document.getElementById("popup").style.display = "none";
+      const script = document.createElement("script");
+      script.src = "main.js";
+      document.body.appendChild(script);
+    }
+    window.onload = function() {
+      document.getElementById("popup").style.display = "flex";
+    };
         </script>
-        <script src="main.js"></script>
-
-        </body>
-        </html>
+</body>
+</html>
